@@ -28,7 +28,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
-    # 手動リリースは main からのみ実行可能
     if: >-
       github.event_name == 'push' ||
       github.ref == 'refs/heads/main'
@@ -37,7 +36,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-          fetch-tags: true
+
+      - name: Fetch tags
+        run: git fetch --tags origin
 
       - name: Setup svu
         if: github.event_name == 'workflow_dispatch'
