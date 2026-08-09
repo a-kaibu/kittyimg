@@ -59,7 +59,7 @@ jobs:
           git config user.email \
             "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git tag "$version"
+          git tag -a "$version" -m "$version"
           git push origin "$version"
 
           echo "version=$version" >> "$GITHUB_OUTPUT"
